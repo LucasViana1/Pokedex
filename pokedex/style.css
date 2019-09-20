@@ -1,0 +1,115 @@
+#logo{
+    margin: auto;
+}
+/*descontinuado*/
+.barra{
+    border: 1px solid red;
+    background-color: red;
+    height: 20px;
+}
+/*todas as informações pokemon*/
+article{
+    border: 1px solid rgb(44, 43, 43);
+    border-radius: 50px;
+    box-shadow: 3px 4px 6px rgb(37, 36, 36);/*parametros: dimensão direita, dimensão baixo, */
+    margin: auto;
+    margin-top: 40px;
+    width: 90%; 
+    height: auto;
+}
+/*imagens pokemon*/
+#foto{
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 40px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    width: 90%; 
+    height: auto;
+    background-image: linear-gradient(rgba(38, 104, 247, 0.767), rgba(38, 104, 247, 0.767)); /*ALTERAR COR OU IMG DE FUNDO DINAMICAMENTE*/
+   /* background-color: rgb(2, 100, 2); */
+
+    /*
+    dragon: rgba(38, 104, 247, 0.767)
+    bug: rgb(2, 100, 2)
+    dark: black
+    electric: yellow
+    fairy: pink
+    fighting: orange
+    fire: red
+    flying: rgb(55, 103, 127)
+    ghost: rgb(48, 48, 109)
+    grass: green
+    ground: rgb(186, 113, 34)
+    ice: rgb(80, 211, 247)
+    normal: rgb(129, 81, 92)
+    poison: purple
+    psychic: rgb(192, 37, 110)
+    rock: rgb(82, 18, 4)
+    steel: rgb(85, 18, 110)
+    water: blue
+    */
+}
+/*container com id e nome*/
+#identifica{
+    margin-top: 40px;
+    margin: auto;
+}
+/*Nome pokemon*/
+#nome{
+    font-size: 300%;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: yellow; /*ALTERAR COR DINAMICAMENTE*/
+    -webkit-text-stroke-width: 2px; /* largura da borda */
+    -webkit-text-stroke-color: #000; /* cor da borda */
+}
+/*número pokedex*/
+#id{
+    font-size: 300%;
+    color: rgba(0, 0, 0, 0.87);
+}
+footer{
+    background-color: yellow;
+    margin-top: 50px;
+    height: 40px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.274);/*parametros: dimensão direita, dimensão baixo, */
+    
+}
+#perfil{
+    border-radius: 6px;
+    border: 1px solid black;
+    margin: 30px;
+}
+/*modelo para definir estilo do(s) tipo(s) do poke*/
+.tipo{
+    border-radius: 6px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+}
+/*definido dinamicamente, SERÁ EDITADO VIA JAVASCRIPT*/
+#tipo1{
+    /*background-color: yellow;
+    border-radius: 6px;
+    height: 50px;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*text-align: center;
+    padding: 10px;*/
+  
+}
+/*barra que marca a quantidade de determinada estatistica*/
+.status-value{
+    width: 2px;/*escala de 1 para 2 (ex: 2 * 255 = 510 max!)*/
+    height: 10px;
+    background-color: green;
+    float: left;
+}
+/*container com valores estatisticos caracteristicos do pokemon*/
+#status{
+    /*margin-bottom: 40px;
+    margin-left: 10px;*/
+    margin: 30px;
+}

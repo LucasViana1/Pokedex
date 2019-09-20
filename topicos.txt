@@ -1,0 +1,3 @@
+Definir limite para listagem de pokemons de uma vez
+Implantar pokemon-especies (egg_group, cor, evolução 'evolution_chain')
+Implantar info de qual tipo é fraco/forte contra qual (type)

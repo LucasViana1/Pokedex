@@ -1,0 +1,11 @@
+Utilizar fetch para requisições a API
+Possiveis informações para buscar/exibir:
+Primarias=> nome pokemon, tipo, habilidades
+Secundarias=> nº pokedex, tamanho, , evolução, status poder, descrição
+
+O offset indica da onde irá começar a listagem, e o limit a quantidade de registros que serão retornados
+https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10
+
+possivel ultimo pokemon da lista "regular"
+"name": "zeraora",
+"url": "https://pokeapi.co/api/v2/pokemon/807/"

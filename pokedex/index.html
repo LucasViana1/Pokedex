@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="img/pokebola.png">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Pokedex</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <header class="text-center">
+            <img id="logo" class="img-fluid" src="img/logo.png" alt="logo">
+            <!--<div class="barra"></div>-->
+            <hr>
+            <nav>
+                <!--<input type="search" id="entrada" class="form-control">
+                <button class="btn btn-primary" onclick="buscar()">Procurar</button>-->
+                <div class="input-group m-auto col-10">
+                    <input type="text" class="form-control" placeholder="Insira o nome ou nº do Pokémon" id="entrada">
+                    <button class="btn btn-outline-primary ml-1" onclick="buscar()">Procurar</button>
+     
+                </div>
+            </nav>
+        </header>
+
+        <article>
+            <!--fotos e identificação-->
+            <div class="container-fluid row">
+                <section class="col-sm-6 " id="identifica">
+                    <div class="float-left col-12 text-center" id="id">#30</div>
+                    <div class="float-left ml-3 col-12 text-center" id="nome">PIKACHU</div>
+                </section>
+                <section class="col-sm-5 text-center" id="foto">
+                    <!--<img class="img-fluid" alt="foto"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png">-->
+                
+                    <div id="carousel" class="carousel slide" data-interval="4000" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="w-75" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" id="front_default" alt="Primeiro">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="w-75" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png" id="back_default" alt="Segundo">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="w-75" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" id="front_shiny" alt="Terceiro">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="w-75" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/25.png" id="back_shiny" alt="Terceiro">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Próximo</span>
+                        </a>
+                    </div>
+
+                </section>      
+            </div>
+
+            <!--perfil-->
+            <section id="perfil">
+                <h4>PERFIL</h4>
+                <table class="table table-sm table-striped col-sm-4 ">
+                    
+                    <tr>
+                        <th>Height</th>
+                        <td id="altura">4</td><!--INSERÃO DINAMICA-->
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                        <td id="peso">60</td><!--INSERÃO DINAMICA-->
+                    </tr>
+                    <tr>
+                        <th>Abilities</th>
+                        <td id="habilidades">lightning-rod, static</td><!--INSERÃO DINAMICA-->
+                    </tr>
+            
+                </table>
+
+                <!--tipo(s) -->
+                <div id="tipos"><!--INSERÃO DINAMICA-->
+                    <div class="col-sm-3 h5 tipo" id="tipo1">
+                        ELECTRIC
+                    </div>
+                    <div class="col-sm-3 h5 tipo" id="tipo2">
+                        NORMAL
+                    </div>
+                </div>
+
+            </section>
+
+            <!--estatísticas: speed, special-atack, special-defense, atack, defense, hp-->
+            <section id="status">
+                <div class="col-12" id="speed-data">
+                    SPEED
+                    <div id="speed">90</div><!--COLOCADO DINAMICAMENTE-->
+                    <div id="speed-barra">
+                        <div class="status-value speed-id"></div><!--talvez remover pois será inserido dinamicamente-->
+                    </div>      
+                </div>
+                <br>
+                <div class="col-12" id="special-atack-data">
+                    SPECIAL-ATACK
+                    <div id="special-atack">50</div><!--COLOCADO DINAMICAMENTE-->
+                    <div id="special-atack-barra">
+                        <div class="status-value special-attack-id"></div><!--talvez remover pois será inserido dinamicamente-->
+                    </div>      
+                </div>
+                <br>
+                <div class="col-12" id="special-defense-data">
+                    SPECIAL-DEFENSE
+                    <div id="special-defense">50</div><!--COLOCADO DINAMICAMENTE-->
+                    <div id="special-defense-barra">
+                        <div class="status-value special-defense-id"></div><!--talvez remover pois será inserido dinamicamente-->
+                    </div>      
+                </div>
+                <br>
+                <div class="col-12" id="atack-data">
+                    ATTACK
+                    <div id="atack">55</div><!--COLOCADO DINAMICAMENTE-->
+                    <div id="atack-barra">
+                        <div class="status-value attack-id"></div><!--talvez remover pois será inserido dinamicamente-->
+                    </div>      
+                </div>
+                <br>
+                <div class="col-12" id="defense-data">
+                    DEFENSE
+                    <div id="defense">40</div><!--COLOCADO DINAMICAMENTE-->
+                    <div id="defense-barra">
+                        <div class="status-value defense-id"></div><!--talvez remover pois será inserido dinamicamente-->
+                    </div>      
+                </div>
+                <br>
+                <div class="col-12" id="hp-data">
+                    HP
+                    <div id="hp">35</div><!--COLOCADO DINAMICAMENTE-->
+                    <div id="hp-barra">
+                        <div class="status-value hp-id"></div><!--talvez remover pois será inserido dinamicamente-->
+                    </div>      
+                </div>
+            </section>
+
+            <!--movimentos-->
+            <!--
+                flavor_text: descrição do efeito do golpe
+                category.name: categoria do golpe (ex: damage)
+                type.name: tipo golpe (ex: normal)
+                power:
+                pp:
+            -->
+            <section>
+
+            </section>
+
+            <!--evolução-->
+
+        </article>
+
+        <footer class=""><!--&copy; LVC--></footer>
+
+    </div>
+
+
+    <script>
+        //Habilita tecla "Enter" como forma de busca
+        document.addEventListener("keydown", KeyCheck)
+        function KeyCheck(event){
+            let KeyID = event.keyCode
+            if(KeyID == 13){
+                buscar()
+            }
+
+        }
+
+        /*function carregar(){
+            //Ajusta barra de status
+
+            //speed
+            let speedBarra = document.getElementById('speed-barra')
+            let speedQtd = document.getElementById('speed')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            let qtd = 90//PEGAR DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            barraStatus(speedBarra,qtd)
+           
+            //special-atack
+            let specialAtackBarra = document.getElementById('special-atack-barra')
+            let specialAtackQtd = document.getElementById('special-atack')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            qtd = 50//PEGAR DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            barraStatus(specialAtackBarra,qtd)
+
+            //special-defense
+            let specialDefenseBarra = document.getElementById('special-defense-barra')
+            let specialDefenseQtd = document.getElementById('special-defense')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            qtd = 50//PEGAR DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            barraStatus(specialDefenseBarra,qtd)
+
+            //atack
+            let atackBarra = document.getElementById('atack-barra')
+            let atackQtd = document.getElementById('atack')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            qtd = 55//PEGAR DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            barraStatus(atackBarra,qtd)
+
+            //defense
+            let defenseBarra = document.getElementById('defense-barra')
+            let defenseQtd = document.getElementById('defense')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            qtd = 40//PEGAR DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            barraStatus(defenseBarra,qtd)
+
+            //hp
+            let hpBarra = document.getElementById('hp-barra')
+            let hpQtd = document.getElementById('hp')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            qtd = 35//PEGAR DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+            barraStatus(hpBarra,qtd)
+
+        }
+
+        function barraStatus(statusBarra,qtd){
+            for(let i = 0; i < qtd; i++){
+                let add = document.createElement('div')
+                add.setAttribute('class', 'status-value')
+                statusBarra.appendChild(add)
+            }
+        }*/
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+</body>
+</html>

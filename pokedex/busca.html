@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Poke</title>
+</head>
+<body onload="carregar()">
+    <!--<input type="button" value="Testar" onclick="retorno()">
+    <div id="retorno"></div>-->
+
+    <div>
+        <p>Nome do pokemon:</p><br>
+        <input type="search" id="nome"><br>
+        <input type="button" value="Buscar" onclick="buscar()">
+    </div>
+
+    <!--retorno completo para testes-->
+    <div id="retorno">
+        
+    </div>
+
+    <!--retorna: habilidades, imagem, tipos, peso, altura-->
+    <div>
+        <div id="skills"></div>
+        <div id="img"></div>
+        <div id="type"></div>
+        <div id="peso"></div>
+        <div id="altura"></div>
+    </div>
+
+    <script src="poke.js"></script>
+</body>
+</html>
