@@ -1,51 +1,92 @@
 const urlPokemon = 'https://pokeapi.co/api/v2/pokemon/'
-let species;
-let evolucao;
+const urlAllPokemons = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151'
+let species;//rever
+let evolucao;//rever
+let primeiraGeracao = {}
+
+async function carregar(){
+    primeiraGeracao = await requisitaAllPokemons()
+    //console.log(primeiraGeracao)
+}
+
+async function requisitaAllPokemons(){
+    const todos = fetch(urlAllPokemons)
+    .then(response =>{
+        return response.json()
+    })
+    .then(data =>{
+        //console.log(data.results)
+        return data.results
+    })
+    return todos
+}
 
 function buscar(){
     let txtNomePokemon = document.getElementById("entrada")//recebe nome e deixa minusculo
     let nomePokemon = txtNomePokemon.value
     nomePokemon = nomePokemon.toLowerCase()
+    let verificaPoke = 0//controla se o nome do pokemon é da primeira geração
 
-    //speed
-    let speedPai = document.getElementById('speed-barra')
-    let speedFilho = document.getElementsByClassName('speed-id')
-    removeBarraStatus(speedPai,speedFilho)
+    //AJUSTAR CONDIÇÃO PARA CASO SEJA INFORMADO UM ID FORA DO RANGE DE 1 A 151
 
-    //special-atack
-    let specialAtackPai = document.getElementById('special-atack-barra')
-    let specialAtackFilho = document.getElementsByClassName('special-attack-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
-    removeBarraStatus(specialAtackPai,specialAtackFilho)
-
-    //special-defense
-    let specialDefensePai = document.getElementById('special-defense-barra')
-    let specialDefenseFilho = document.getElementsByClassName('special-defense-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
-    removeBarraStatus(specialDefensePai,specialDefenseFilho)
-
-    //atack
-    let atackPai = document.getElementById('atack-barra')
-    let atackFilho = document.getElementsByClassName('attack-id')
-    removeBarraStatus(atackPai,atackFilho)
-
-    //defense
-    let defensePai = document.getElementById('defense-barra')
-    let defenseFilho = document.getElementsByClassName('defense-id')
-    removeBarraStatus(defensePai,defenseFilho)
-
-    //hp
-    let hpPai = document.getElementById('hp-barra')
-    let hpFilho = document.getElementsByClassName('hp-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
-    removeBarraStatus(hpPai,hpFilho)
-
-    //remove filhos
-    for(let i = 0; i < speedFilho.length; i++){
-        speedPai.removeChild(speedFilho[i])
+    //condição caso o nome do pokemon seja incorreto ou não seja da primeira geração, setando em uma variavel auxiliar
+    /*if(!isNaN(Number(nomePokemon))){
+        console.log("numero")
+        if(Number(nomePokemon) < 152 || Number(nomePokemon) > 0){
+            verificaPoke = 1
+        }
+    }*/
+    for(let i = 0; i < primeiraGeracao.length; i++){
+        //console.log(`${primeiraGeracao[i].name} => ${nomePokemon}`)
+        if(nomePokemon == primeiraGeracao[i].name){
+            verificaPoke = 1
+        }
     }
 
-    //console.log(speedFilho.length)
+    //ação após verificação do nome/id pokemon
+    if(verificaPoke == 0){
+        alert("Insirá um Pokémon da 1º Geração")
+    }
+    else{
+        //speed
+        let speedPai = document.getElementById('speed-barra')
+        let speedFilho = document.getElementsByClassName('speed-id')
+        removeBarraStatus(speedPai,speedFilho)
 
-    pokemonData(nomePokemon)
+        //special-atack
+        let specialAtackPai = document.getElementById('special-atack-barra')
+        let specialAtackFilho = document.getElementsByClassName('special-attack-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+        removeBarraStatus(specialAtackPai,specialAtackFilho)
 
+        //special-defense
+        let specialDefensePai = document.getElementById('special-defense-barra')
+        let specialDefenseFilho = document.getElementsByClassName('special-defense-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+        removeBarraStatus(specialDefensePai,specialDefenseFilho)
+
+        //atack
+        let atackPai = document.getElementById('atack-barra')
+        let atackFilho = document.getElementsByClassName('attack-id')
+        removeBarraStatus(atackPai,atackFilho)
+
+        //defense
+        let defensePai = document.getElementById('defense-barra')
+        let defenseFilho = document.getElementsByClassName('defense-id')
+        removeBarraStatus(defensePai,defenseFilho)
+
+        //hp
+        let hpPai = document.getElementById('hp-barra')
+        let hpFilho = document.getElementsByClassName('hp-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+        removeBarraStatus(hpPai,hpFilho)
+
+        //remove filhos
+        for(let i = 0; i < speedFilho.length; i++){
+            speedPai.removeChild(speedFilho[i])
+        }
+
+        pokemonData(nomePokemon)
+    }
+
+    
 }
 
 function removeBarraStatus(pai,filho){
@@ -62,7 +103,7 @@ function pokemonData(id){
         return response.json()
     })
     .then(dados => {
-        console.log(dados)//debug
+        //console.log(dados)//debug
         //identificador
         document.getElementById('nome').innerHTML = dados.name
         document.getElementById('id').innerHTML = "#" + dados.id
@@ -176,8 +217,8 @@ function pokemonData(id){
 
         document.getElementById('foto').style.backgroundImage = `linear-gradient(${cor1}, ${cor2})`
         document.getElementById('nome').style.color = cor1
-        console.log("cor1: "+cor1)
-        console.log("cor2: "+cor2)
+        //console.log("cor1: "+cor1)
+        //console.log("cor2: "+cor2)
 
         //vincula os tipos em cada div
         document.getElementById('tipo1').innerHTML = arrayTipos[0]//descrição
@@ -225,10 +266,10 @@ function pokemonData(id){
 
         //console.log("cor: "+cor1)
         
-        for(i in arrayTipos){
+        /*for(i in arrayTipos){
             console.log(arrayTipos[i])
             //switch(arrayTipos)
-        }
+        }*/
 
 
         return dados//debug
