@@ -15,6 +15,37 @@
     
     <div class="container">
 
+        <audio src="audio/som1.wav" id="som"></audio>
+        <button onclick="play()">tocar</button>
+        <button onclick="pause()">pausar</button>
+        <button onclick="proximo()">proximo</button>
+        <button onclick="anterior()">anterior</button>
+
+        <script>
+            let som = document.getElementById('som')
+            let numeroSom = 1
+
+            function play(){
+                som.play()
+            }
+            function pause(){             
+                som.pause()
+            }
+            function proximo(){
+                numeroSom += 1
+                if(numeroSom == 4) numeroSom = 1
+                som.src = `audio/som${numeroSom}.wav`
+                play()
+            }
+            function anterior(){
+                numeroSom -= 1
+                if(numeroSom == 0) numeroSom = 3
+                som.src = `audio/som${numeroSom}.wav`
+                play()
+            }
+            
+        </script>
+
         <header class="text-center">
             <img id="logo" class="img-fluid" src="img/logo.png" alt="logo">
             <!--<div class="barra"></div>-->
