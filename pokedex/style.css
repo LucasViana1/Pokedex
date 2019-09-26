@@ -7,16 +7,7 @@
     background-color: red;
     height: 20px;
 }
-/*todas as informações pokemon*/
-article{
-    border: 1px solid rgb(44, 43, 43);
-    border-radius: 50px;
-    box-shadow: 3px 4px 6px rgb(37, 36, 36);/*parametros: dimensão direita, dimensão baixo, */
-    margin: auto;
-    margin-top: 40px;
-    width: 90%; 
-    height: auto;
-}
+
 /*imagens pokemon*/
 #foto{
     border: 1px solid black;
@@ -26,7 +17,7 @@ article{
     margin-bottom: 30px;
     width: 90%; 
     height: auto;
-    background-image: linear-gradient(rgba(38, 104, 247, 0.767), rgba(38, 104, 247, 0.767)); /*ALTERAR COR OU IMG DE FUNDO DINAMICAMENTE*/
+    background-image: linear-gradient(purple, green); /*ALTERAR COR OU IMG DE FUNDO DINAMICAMENTE*/
    /* background-color: rgb(2, 100, 2); */
 
     /*
@@ -60,15 +51,11 @@ article{
     font-size: 300%;
     font-weight: bold;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    color: yellow; /*ALTERAR COR DINAMICAMENTE*/
+    color: purple; /*ALTERAR COR DINAMICAMENTE*/
     -webkit-text-stroke-width: 2px; /* largura da borda */
     -webkit-text-stroke-color: #000; /* cor da borda */
 }
-/*número pokedex*/
-#id{
-    font-size: 300%;
-    color: rgba(0, 0, 0, 0.87);
-}
+
 footer{
     background-color: yellow;
     margin-top: 50px;
@@ -88,6 +75,7 @@ footer{
     height: 50px;
     text-align: center;
     padding: 10px;
+ 
 }
 /*definido dinamicamente, SERÁ EDITADO VIA JAVASCRIPT*/
 #tipo1{
@@ -102,7 +90,7 @@ footer{
 }
 /*barra que marca a quantidade de determinada estatistica*/
 .status-value{
-    width: 2px;/*escala de 1 para 2 (ex: 2 * 255 = 510 max!)*/
+    /*width: 2px;*//*escala de 1 para 2 (ex: 2 * 255 = 510 max!)*/
     height: 10px;
     background-color: green;
     float: left;
@@ -112,4 +100,102 @@ footer{
     /*margin-bottom: 40px;
     margin-left: 10px;*/
     margin: 30px;
+}
+#borda-esquerda{
+    border-radius: 100px 0px 0px 100px;
+    height: 1100px;
+    text-align: center;
+    padding: 10px;
+    background-color: red;
+   /* box-shadow: 10px 10px 8px 10px rgb(94, 94, 94);*/
+   box-shadow: 5px 5px 10px #2e2e2e inset;/*esq,cima,interno?*/
+}
+#borda-direita{
+    border-radius: 0px 100px 100px 0px;
+    height: 1100px;
+    text-align: center;
+    padding: 10px;
+    background-color: red;
+    box-shadow: 5px 5px 10px #2e2e2e inset;/*esq,cima,interno?*/
+}
+#borda-cima{
+    background-color: red;
+    height: 70px;
+    width: 100%;
+    margin: 0;
+}
+#borda-cima2{
+    width: 0; 
+  height: 0; 
+  border-left: 250px solid yellow;
+  border-right: 25px solid transparent;
+  border-bottom: 25px solid #5386E4;
+  border-top: 25px solid orange;
+    /*-webkit-transform: skew(-20deg);
+   -moz-transform: skew(-20deg);
+     -o-transform: skew(-20deg);*/
+}
+/*número pokedex*/
+#id{
+    background-color: blue;
+    border-radius: 100%;
+    float: right;  
+    margin-right: 20px;
+    margin-top: 7px;
+    font-size: 180%;
+    padding: 5px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#circulo-vermelho{
+    background-color: red;
+    border-radius: 100%;
+    border: 1px solid black;
+    float: left;
+    color: transparent
+}
+#circulo-amarelo{
+    background-color: yellow;
+    border-radius: 100%;
+    border: 1px solid black;
+    float: left;
+    color: transparent
+}
+#circulo-verde{
+    background-color: green;
+    border-radius: 100%;
+    border: 1px solid black;
+    float: left;
+    color: transparent
+}
+/*todas as informações pokemon*/
+article{
+    border: 1px solid rgb(44, 43, 43);
+    /*border-radius: 50px;*/
+    box-shadow: 3px 4px 6px rgb(37, 36, 36);/*parametros: dimensão direita, dimensão baixo, */
+    margin: 0;
+    /*margin-top: 40px;*/
+    width: 100%; 
+    height: auto;
+    padding: 0 !important; 
+}
+.th-tabela{
+    background-color: rgba(128, 128, 128, 0.836);
+    border-radius: 100%;
+}
+.perfil-dados{
+    font-weight: bold;
+    color: rgb(100, 2, 2);
+    font-size: 110%;
+    text-decoration: underline;
+}
+#parte1{
+    border: 10px groove rgba(34, 34, 34, 0.815);
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+    margin: auto;
+    border-radius: 100px 100px 0px 0px;
+ 
+ 
+
 }

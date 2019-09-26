@@ -6,6 +6,7 @@ let primeiraGeracao = {}
 
 async function carregar(){
     primeiraGeracao = await requisitaAllPokemons()
+    buscar(3)
     //console.log(primeiraGeracao)
 }
 
@@ -21,69 +22,60 @@ async function requisitaAllPokemons(){
     return todos
 }
 
-function buscar(){
-    let txtNomePokemon = document.getElementById("entrada")//recebe nome e deixa minusculo
-    let nomePokemon = txtNomePokemon.value
-    nomePokemon = nomePokemon.toLowerCase()
-    let verificaPoke = 0//controla se o nome do pokemon é da primeira geração
+let idAtual = 1
+//comando: 0 (usou input texto para pesquisa), 1 (usou botao de proximo), 2 (usou botao de anterior), 3 (apenas usado no carregamento da pagina, exibindo primeiro pokemon do pokedex)
+function buscar(comando=0){
+    console.log(idAtual)
 
-    //AJUSTAR CONDIÇÃO PARA CASO SEJA INFORMADO UM ID FORA DO RANGE DE 1 A 151
+    //caso seja usado a busca pelo input de texto
+    if(comando == 0){
 
-    //condição caso o nome do pokemon seja incorreto ou não seja da primeira geração, setando em uma variavel auxiliar
-    /*if(!isNaN(Number(nomePokemon))){
-        console.log("numero")
-        if(Number(nomePokemon) < 152 || Number(nomePokemon) > 0){
-            verificaPoke = 1
+        let txtNomePokemon = document.getElementById("entrada")//recebe nome e deixa minusculo
+        let nomePokemon = txtNomePokemon.value
+        nomePokemon = nomePokemon.toLowerCase()
+        let verificaPoke = 0//controla se o nome do pokemon é da primeira geração
+    
+        //condição para saber se foi digitado id ou nome do pokemon
+        if(!isNaN(Number(nomePokemon))){
+            //console.log("é numero")
+            const idPoke = Number(nomePokemon)
+            if(idPoke < 152 && idPoke > 0){
+                verificaPoke = 1
+            }
         }
-    }*/
-    for(let i = 0; i < primeiraGeracao.length; i++){
-        //console.log(`${primeiraGeracao[i].name} => ${nomePokemon}`)
-        if(nomePokemon == primeiraGeracao[i].name){
-            verificaPoke = 1
+        else{
+            //console.log("é string")
+            for(let i = 0; i < primeiraGeracao.length; i++){
+                //console.log(`${primeiraGeracao[i].name} => ${nomePokemon}`)
+                if(nomePokemon == primeiraGeracao[i].name){
+                    verificaPoke = 1
+                }
+            }
+        }
+    
+        //ação após verificação do nome/id (string/int) pokemon
+        if(verificaPoke == 0){
+            alert("Insirá um Pokémon da 1º Geração")
+        }
+        else{  
+            pokemonData(nomePokemon)
         }
     }
-
-    //ação após verificação do nome/id pokemon
-    if(verificaPoke == 0){
-        alert("Insirá um Pokémon da 1º Geração")
+    //inicio da página
+    else if(comando == 3){
+        pokemonData(idAtual)
+    }
+    //caso seja usado o botao de proximo/anterior
+    else if(comando == 1){
+        idAtual += 1
+        if(idAtual > 151) idAtual = 1 //caso chegue no limite da primeira geração
+        pokemonData(idAtual)
     }
     else{
-        //speed
-        let speedPai = document.getElementById('speed-barra')
-        let speedFilho = document.getElementsByClassName('speed-id')
-        removeBarraStatus(speedPai,speedFilho)
-
-        //special-atack
-        let specialAtackPai = document.getElementById('special-atack-barra')
-        let specialAtackFilho = document.getElementsByClassName('special-attack-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
-        removeBarraStatus(specialAtackPai,specialAtackFilho)
-
-        //special-defense
-        let specialDefensePai = document.getElementById('special-defense-barra')
-        let specialDefenseFilho = document.getElementsByClassName('special-defense-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
-        removeBarraStatus(specialDefensePai,specialDefenseFilho)
-
-        //atack
-        let atackPai = document.getElementById('atack-barra')
-        let atackFilho = document.getElementsByClassName('attack-id')
-        removeBarraStatus(atackPai,atackFilho)
-
-        //defense
-        let defensePai = document.getElementById('defense-barra')
-        let defenseFilho = document.getElementsByClassName('defense-id')
-        removeBarraStatus(defensePai,defenseFilho)
-
-        //hp
-        let hpPai = document.getElementById('hp-barra')
-        let hpFilho = document.getElementsByClassName('hp-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
-        removeBarraStatus(hpPai,hpFilho)
-
-        //remove filhos
-        for(let i = 0; i < speedFilho.length; i++){
-            speedPai.removeChild(speedFilho[i])
-        }
-
-        pokemonData(nomePokemon)
+        idAtual -= 1
+        //console.log(idAtual)
+        if(idAtual < 1) idAtual = 151 //caso chegue no limite da primeira geração
+        pokemonData(idAtual)
     }
 
     
@@ -105,8 +97,9 @@ function pokemonData(id){
     .then(dados => {
         //console.log(dados)//debug
         //identificador
-        document.getElementById('nome').innerHTML = dados.name
+        document.getElementById('nome').innerHTML = (dados.name).toUpperCase()
         document.getElementById('id').innerHTML = "#" + dados.id
+        idAtual = dados.id//vincula o id do atual pokemon, o que está sendo visualizado no momento
         //image
         document.getElementById('front_default').src = dados.sprites.front_default
         document.getElementById('back_default').src = dados.sprites.back_default
@@ -130,10 +123,8 @@ function pokemonData(id){
         })
 
         
-        //status (VINCULAR EM ELEMENTOS HTML)
         dados.stats.map(function(item){
-            //console.log("nome status: "+item.stat.name)
-            //console.log("base status: "+item.base_stat)
+            
             insereQtdStatus(item.stat.name, item.base_stat)
         })
 
@@ -143,59 +134,45 @@ function pokemonData(id){
                 case 'speed': 
                     let speedBarra = document.getElementById('speed-barra')
                     /*let speedQtd = */document.getElementById('speed').innerHTML = qtd
-                    //let qtd = 90//PEGAR DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
-                    barraStatus(speedBarra,qtd,nome)
+                    //barraStatus(speedBarra,qtd,nome)
+                    document.getElementById('grafico-speed').style.width = `${qtd*3}px`
                     break;
                 case 'special-attack': 
                     let specialAtackBarra = document.getElementById('special-atack-barra')
                     document.getElementById('special-atack').innerHTML = qtd
-                    barraStatus(specialAtackBarra,qtd,nome)
+                    //barraStatus(specialAtackBarra,qtd,nome)
+                    document.getElementById('grafico-special-attack').style.width = `${qtd*3}px`
                     break;
                 case 'special-defense': 
                     let specialDefenseBarra = document.getElementById('special-defense-barra')
                     document.getElementById('special-defense').innerHTML = qtd
-                    barraStatus(specialDefenseBarra,qtd,nome)
+                    //barraStatus(specialDefenseBarra,qtd,nome)
+                    document.getElementById('grafico-special-defense').style.width = `${qtd*3}px`
                     break;
                 case 'defense': 
                     let defenseBarra = document.getElementById('defense-barra')
                     document.getElementById('defense').innerHTML = qtd
-                    barraStatus(defenseBarra,qtd,nome)
+                    document.getElementById('grafico-defense').style.width = `${qtd*3}px`
+                    //barraStatus(defenseBarra,qtd,nome)
                     break;
                 case 'attack': 
                     let atackBarra = document.getElementById('atack-barra')
                     document.getElementById('atack').innerHTML = qtd
-                    barraStatus(atackBarra,qtd,nome)
+                    //barraStatus(atackBarra,qtd,nome)
+                    document.getElementById('grafico-attack').style.width = `${qtd*3}px`
                     break;
                 case 'hp': 
                     let hpBarra = document.getElementById('hp-barra')
                     document.getElementById('hp').innerHTML = qtd
-                    barraStatus(hpBarra,qtd,nome)
+                    //barraStatus(hpBarra,qtd,nome)
+                    document.getElementById('grafico-hp').style.width = `${qtd*3}px`
                     break;
                 default:
                     console.log(`Falha ao vincular ${nome} com base ${qtd} na tela`)
                     break
             }
         }
-        //VINCULAR OS CODIGOS ABAIXO NO SWICHT
-    
-        //speed
-        
-        
-       /* //special-atack
-        
-
-        //special-defense
-        
-
-        //atack
-        
-
-        //defense
-      
-
-        //hp
-   
-*/
+       
         function barraStatus(statusBarra,qtd,nomeStatus){
             
             for(let i = 0; i < qtd; i++){
@@ -250,7 +227,7 @@ function pokemonData(id){
                 case 'ground': cor = 'rgb(186, 113, 34)'; break;
                 case 'ice': cor = 'rgb(80, 211, 247)'; break;
                 case 'normal': cor = 'rgb(129, 81, 92)'; break;
-                case 'poison': cor = 'purple'; break;
+                case 'poison': cor = 'rgba(128, 0, 128, 0.9)'; break;
                 case 'psychic': cor = 'rgb(192, 37, 110)'; break;
                 case 'rock': cor = 'rgb(82, 18, 4)'; break;
                 case 'steel': cor = 'rgb(85, 18, 110)'; break;
@@ -295,3 +272,39 @@ class Pokemon{
         return this.tudo
     }
 }*/
+
+/*DESCONTINUADO METODO DE REMOVER AS BARRAS DE STATUS
+//speed
+        let speedPai = document.getElementById('speed-barra')
+        let speedFilho = document.getElementsByClassName('speed-id')
+        removeBarraStatus(speedPai,speedFilho)
+
+        //special-atack
+        let specialAtackPai = document.getElementById('special-atack-barra')
+        let specialAtackFilho = document.getElementsByClassName('special-attack-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+        removeBarraStatus(specialAtackPai,specialAtackFilho)
+
+        //special-defense
+        let specialDefensePai = document.getElementById('special-defense-barra')
+        let specialDefenseFilho = document.getElementsByClassName('special-defense-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+        removeBarraStatus(specialDefensePai,specialDefenseFilho)
+
+        //atack
+        let atackPai = document.getElementById('atack-barra')
+        let atackFilho = document.getElementsByClassName('attack-id')
+        removeBarraStatus(atackPai,atackFilho)
+
+        //defense
+        let defensePai = document.getElementById('defense-barra')
+        let defenseFilho = document.getElementsByClassName('defense-id')
+        removeBarraStatus(defensePai,defenseFilho)
+
+        //hp
+        let hpPai = document.getElementById('hp-barra')
+        let hpFilho = document.getElementsByClassName('hp-id')//TALVEZ PEGAR ESSE DADO DINAMICAMENTE ATRAVÉS DA REQUISIÇÃO
+        removeBarraStatus(hpPai,hpFilho)
+
+        //remove filhos
+        for(let i = 0; i < speedFilho.length; i++){
+            speedPai.removeChild(speedFilho[i])
+        }*/
