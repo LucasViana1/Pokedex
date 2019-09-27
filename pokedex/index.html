@@ -7,6 +7,7 @@
     <link rel="icon" href="img/pokebola.png">
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../bootstrap4/css/bootstrap.min.css"><!--REMOVER DEPOIS-->
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/68f11c2556.js" crossorigin="anonymous"></script>
     <title>Pokedex</title>
@@ -15,12 +16,7 @@
     
     <div class="container">
 
-        <audio src="audio/som1.wav" id="som"></audio>
-        <button onclick="play()">tocar</button>
-        <button onclick="pause()">pausar</button>
-        <button onclick="proximo()">proximo</button>
-        <button onclick="anterior()">anterior</button>
-
+        
         <script>
             let som = document.getElementById('som')
             let numeroSom = 1
@@ -50,35 +46,32 @@
             <img id="logo" class="img-fluid" src="img/logo.png" alt="logo">
             <!--<div class="barra"></div>-->
             <hr>
-            <nav>
-                <!--<input type="search" id="entrada" class="form-control">
-                <button class="btn btn-primary" onclick="buscar()">Procurar</button>-->
-                <div class="input-group m-auto col-10">
-                    <input type="text" class="form-control" placeholder="Insira o nome ou nº do Pokémon" id="entrada">
-                    <button class="btn btn-outline-primary ml-1" onclick="buscar()">Procurar</button>
-     
-                </div>
-            </nav>
+            
         </header>
 
         
         <div class="row text-center">
-            <div id="borda-esquerda" class="col-1"></div>
+            <!--<div id="borda-esquerda" class="col-1"></div>-->
             
-            <article class="col-10">
+            <article class="">
                 <div id="borda-cima" class="">
                     <div id="circulo-vermelho" class="col- mt-2 ml-1">#1</div>
                     <div id="circulo-amarelo" class="col- mt-2 ml-1">#1</div>
                     <div id="circulo-verde" class="col- mt-2 ml-1">#1</div>
+                    
                     <div id="id">#1</div>
                       
                 </div>
-                <div id="borda-cima2" class="col-6"></div>
-                <!--botão de próximo/anterior pokemon-->
-                <div id="next" class="text-center">
-                    <input type="button" value="Anterior" onclick="buscar(2)">
-                    <input type="button" value="Próximo" onclick="buscar(1)">
-                </div>
+                <br>
+                <div id="borda-cima2" class="col-4 float-left"></div>
+                <!--busca-->
+                <nav class="col-5 float-left">
+                    <div class="input-group m-auto col-10">
+                        <input type="text" class="form-control" placeholder="Insira o nome ou nº do Pokémon" id="entrada">
+                        <button class="btn btn-outline-primary ml-1" onclick="buscar()">Procurar</button>
+            
+                    </div>
+                </nav>
     
                 <!--fotos e identificação-->
                 <div id="parte1" class="container-fluid row">
@@ -165,6 +158,21 @@
                     </section>
         
                 </div>
+
+                <!--musica-->
+                <div id="musica">
+                    <audio src="audio/som1.wav" id="som"></audio>
+                    <button onclick="play()">tocar</button>
+                    <button onclick="pause()">pausar</button>
+                    <button onclick="proximo()">proximo</button>
+                    <button onclick="anterior()">anterior</button>
+                </div>
+
+                 <!--botão de próximo/anterior pokemon-->
+                 <div id="next" class="text-center">
+                        <input type="button" value="Anterior" onclick="buscar(2)">
+                        <input type="button" value="Próximo" onclick="buscar(1)">
+                    </div>
     
                 <!--estatísticas: speed, special-atack, special-defense, atack, defense, hp-->
                 <section id="status">
@@ -233,7 +241,7 @@
     
             </article>
 
-            <div id="borda-direita" class="col-1"></div>
+            <!--<div id="borda-direita" class="col-1"></div>-->
 
         </div>
 

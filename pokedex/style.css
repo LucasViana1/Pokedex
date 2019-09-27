@@ -170,8 +170,11 @@ footer{
 }
 /*todas as informações pokemon*/
 article{
-    border: 1px solid rgb(44, 43, 43);
-    /*border-radius: 50px;*/
+    /*border: 1px solid rgb(44, 43, 43);*/
+    border-radius: 50px 50px 50px 50px;
+    border-left: 60px solid red;
+    border-right: 60px solid red;
+    border-bottom: 60px solid red;
     box-shadow: 3px 4px 6px rgb(37, 36, 36);/*parametros: dimensão direita, dimensão baixo, */
     margin: 0;
     /*margin-top: 40px;*/
