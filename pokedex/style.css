@@ -90,7 +90,7 @@ footer{
     /*margin-bottom: 40px;
     margin-left: 10px;*/
     margin: 30px;
-    border: 2px solid gray;
+    
 }
 #borda-esquerda{
     border-radius: 100px 0px 0px 100px;
@@ -126,7 +126,7 @@ footer{
 }
 /*número pokedex*/
 #id{
-    background-color: blue;
+    background-color: rgba(56, 56, 255, 0.863);
     border-radius: 100%;
     float: right;  
     margin-right: 20px;
@@ -213,7 +213,9 @@ article{
 }
 .botoes-players{
     font-size: 170%;
-    margin-top: 10px;
+    margin-top: 12px;
+    padding: 4px;
+    color: rgb(201, 201, 0);
 }
 #lista_pokemons{
     width: 800px !important;
@@ -223,4 +225,7 @@ article{
 
 .container {
     height: 90vh;
+}
+body{
+    font-family: "Courier New", Courier, monospace;
 }
