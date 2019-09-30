@@ -4,8 +4,21 @@ let species;//rever
 let evolucao;//rever
 let primeiraGeracao = {}
 
+
 async function carregar(){
     primeiraGeracao = await requisitaAllPokemons()
+    /*let listaPoke = document.getElementById('lista_pokemons')
+
+    for(let i = 0; i < primeiraGeracao.length; i++){
+        listaNomePoke[i] = primeiraGeracao[i].name//remover
+        let nomePoke = document.createElement('option')
+        nomePoke.innerHTML = primeiraGeracao[i].name
+        listaPoke.appendChild(nomePoke)
+    }
+    //console.log(primeiraGeracao.name[i])
+
+    console.log(listaNomePoke)//remover*/
+
     buscar(3)
     //console.log(primeiraGeracao)
 }
